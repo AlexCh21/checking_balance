@@ -44,9 +44,9 @@ def check(my_stack):
             stack.push(i)
         elif i == brackets.get(stack.peek()):
                 stack.pop()
-            else:
-                return "False"
-        return stack.isEmpty()
+        else:
+             return "False"
+    return stack.isEmpty()
  
 if __name__ == '__main__':
     for seq in balanced + unbalanced:
