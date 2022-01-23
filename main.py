@@ -1,5 +1,8 @@
-open_list = ["[","{","("]
-close_list = ["]","}",")"]
+brackets = {
+    '(': ')',
+    '[': ']',
+    '{': '}'
+}
 
 balanced = [
     '(((([{}]))))',
@@ -35,19 +38,15 @@ class Stack(list):
 
 
 def check(my_stack):
-    stack = []
+    stack = Stack()
     for i in my_stack:
-        if i in open_list:
-            stack.append(i)
-        elif i in close_list:
-            pos = close_list.index(i)
-            if ((len(stack) > 0) and
-                (open_list[pos] == stack[len(stack)-1])):
+        if i in brackets:
+            stack.push(i)
+        elif i == brackets.get(stack.peek()):
                 stack.pop()
             else:
                 return "False"
-    if len(stack) == 0: 
-        return "True"
+        return stack.isEmpty()
  
 if __name__ == '__main__':
     for seq in balanced + unbalanced:
